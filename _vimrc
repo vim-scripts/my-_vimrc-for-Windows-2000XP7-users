@@ -1,5 +1,6 @@
 " My vim settings file
 " Author: Mayuresh Kadu <mskadu@gmail.com>
+" Last updated: 2/Mar/2005
 
 " Settings {{{
 set secure nocompatible
@@ -75,7 +76,7 @@ set nohlsearch
 "Java settings {{{
 let java_highlight_functions=1
 
-autocmd BufRead BufNewFile *.java set makeprg=javac\ %
+autocmd BufRead,BufNewFile *.java set makeprg=javac\ %
 "autocmd BufRead BufNewFile *.java set makeprg=ant\ -emacs
 
 " Mark Klips as XML files (17/2/2005)
