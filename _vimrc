@@ -1,32 +1,23 @@
 " My vim settings file
 " Author: Mayuresh Kadu <mskadu@gmail.com>
-" Last updated: 2/Mar/2005
+" Last updated: 9/May/2006
 
 " Settings {{{
 set secure nocompatible
 if version >= 600
 	syntax enable
-	filetype on
-	filetype plugin on
-	filetype indent on
+
+	if version >= 700
+		filetype plugin indent on
+	else
+		filetype on
+		filetype plugin on
+		filetype indent on
+	endif
 else
 	:finish
 endif
 " }}}
-
-" Terminal Specific Stuff {{{
-
-"if has("terminfo")
-"	set t_Co=16
-"	set t_Sf=3p1%dm
-"	set t_Sb=%p1%dm
-"	set t_vb=
-"else
-"	set t_Co=16
-"	set t_Sf= %dm
-"	set t_Sb= dm
-"	set t_vb=
-"endif
 
 " }}}
 
@@ -36,17 +27,20 @@ endif
 set autoindent
 "Show actual cursor position
 set ruler
+set showcmd
 set showmatch
 set showmode
-set showcmd
 
 "Misc
-set shiftwidth=3
-set tabstop=3
-set number
-set smartindent
-set formatoptions=croq
 set backspace=indent,eol,start
+set formatoptions=croq
+set number
+set shiftwidth=3
+set smartindent
+set tabstop=3
+
+" *always* use Unicode
+set encoding=utf-8 fileencodings=
 
 "Fix findstr for Win32
 if has("win32")
@@ -57,6 +51,12 @@ endif
 map <F2> :source $VIM/syntax/
 " F9 toggles highlighting
 map <F9> :if has("syntax_items")<CR>syntax off<CR>else<CR>syntax on<CR>endif<CR><CR>
+
+"Vim 7 specific mappings
+if version >= 700
+	map <C-t> <Esc>:tabnew<CR>
+	map <C-F4> <Esc>:tabclose<CR>	
+endif
 
 " show status line
 set ls=2
@@ -82,6 +82,9 @@ autocmd BufRead,BufNewFile *.java set makeprg=javac\ %
 " Mark Klips as XML files (17/2/2005)
 autocmd BufRead,BufNewFile *.klip set filetype=xml
 
+" Mark Mycroft Source as XML files (17/2/2005)
+autocmd BufRead,BufNewFile *.src set filetype=xml
+
 " Reload settings file everytime its written 
 autocmd! bufwritepost _vimrc source $VIM/_vimrc
 
@@ -99,8 +102,8 @@ highlight Identifier	NONE
 highlight LineNr		NONE
 highlight ModeMsg		NONE
 highlight MoreMsg		NONE
-highlight Normal		NONE
 highlight NonText		NONE
+highlight Normal		NONE
 highlight PreProc		NONE
 highlight Question	NONE
 highlight Search		NONE
