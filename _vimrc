@@ -1,6 +1,6 @@
 " My vim settings file
 " Author: Mskadu <mskadu@gmail.com>
-" Last updated: 12/Dec/2008
+" Last updated: 19/05/2010
 
 " Settings {{{
 set secure nocompatible
@@ -166,7 +166,10 @@ colorscheme desert
 
 "use our custom font
 if has("gui") 
-  set guifont=Courier_New:h10:cANSI
+  if has("win32")
+    "This font looks more suitable on Windows
+    set guifont=Courier_New:h10:cANSI
+  endif
 
   "see: http://vim.wikia.com/wiki/VimTip1
   set mousemodel=extend
