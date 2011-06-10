@@ -72,6 +72,10 @@ endif
 
 " show status line
 set ls=2
+" modify status line to show charcode at cursor 
+" source: http://vim.wikia.com/wiki/Showing_the_ASCII_value_of_the_current_character
+set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
+
 "Make no *.bak
 set nobackup
 " keep backup while we are editing
