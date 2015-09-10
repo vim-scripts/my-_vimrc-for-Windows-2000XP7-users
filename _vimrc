@@ -1,6 +1,6 @@
 " My vim settings file
 " Author: Mskadu <mskadu@gmail.com>
-" Last updated: 19/05/2010
+" Last updated: 10/09/2015
 
 " Settings {{{
 set secure nocompatible
@@ -70,6 +70,18 @@ if has("win32")
   map <C-S-Tab> <Esc><C-w>W
 endif
 
+"Get working with Unicode (source: http://vim.wikia.com/wiki/Working_with_Unicode)
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+
 " show status line
 set ls=2
 " modify status line to show charcode at cursor 
@@ -95,9 +107,6 @@ let java_highlight_functions=1
 if has("autocmd")
   autocmd BufRead,BufNewFile *.java set makeprg=javac\ %
   "autocmd BufRead BufNewFile *.java set makeprg=ant\ -emacs
-
-  " Mark Klips as XML files (17/2/2005)
-  autocmd BufRead,BufNewFile *.klip set filetype=xml
 
   " Mark Mycroft Source as XML files (17/2/2005)
   autocmd BufRead,BufNewFile *.src set filetype=xml
@@ -172,7 +181,7 @@ colorscheme desert
 if has("gui") 
   if has("win32")
     "This font looks more suitable on Windows
-    set guifont=Courier_New:h10:cANSI
+    set guifont=Courier_New:h9:cANSI
   endif
 
   "see: http://vim.wikia.com/wiki/VimTip1
